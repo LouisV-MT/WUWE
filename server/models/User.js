@@ -33,7 +33,7 @@ const UserSchema = new mongoose.Schema({
   // --- AUTHENTICATION (Supports Local & Google) ---
   username: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: false }, // False so Google users can log in without it
+  password: { type: String, required: false }, 
   google_id: { type: String, required: false, unique: true, sparse: true },
   
   // --- PROFILE ---
