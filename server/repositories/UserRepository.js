@@ -24,13 +24,22 @@ class UserRepository {
     return await user.save();
   }
 
-  async updatePreferences(userId, preferencesData) {
-    return await User.findByIdAndUpdate(
-      userId, 
-      { $set: { preferences: preferencesData } },
-      { new: true }
-    ).select('-password');
-  }
+  async updatePreferences(userId, prefsData) {
+  return await User.findByIdAndUpdate(
+    userId,
+    {
+      $set: {
+        "preferences.liked_regions": prefsData.liked_regions,
+        "preferences.dietary.is_vegan": prefsData.dietary?.includes("vegan"),
+        "preferences.dietary.is_vegetarian": prefsData.dietary?.includes("vegetarian"),
+        "preferences.dietary.is_gluten_free": prefsData.dietary?.includes("gluten-free"),
+        "preferences.vibe_target": prefsData.vibeTarget,
+        "budget": prefsData.budget,
+      }
+    },
+    { new: true, runValidators: true }
+  );
+}
 
   // --- BOOKMARKS ---
   async addSavedRestaurant(userId, restaurantId) {

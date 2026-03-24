@@ -12,6 +12,8 @@ router.get('/recommend/:id', (req, res) => restaurantController.recommend(req, r
 
 // --- ADMIN / AI WRITES ---
 // POST /api/restaurants/enrich/:id
-router.post('/enrich/:id', (req, res) => enrichmentController.enrichRestaurant(req, res));
+router.post('/enrich/:id', protect, (req, res) => {
+  enrichmentController.enrichRestaurant(req, res);
+});
 
 module.exports = router;
