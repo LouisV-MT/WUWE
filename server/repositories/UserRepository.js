@@ -38,7 +38,7 @@ class UserRepository {
       }
     },
     { new: true, runValidators: true }
-  );
+  ).select('-password');
 }
 
   // --- BOOKMARKS ---

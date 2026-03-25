@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const restaurantController = require('../controllers/RestaurantController');
 const enrichmentController = require('../controllers/EnrichmentController');
+const { protect } = require('../middleware/authMiddleware');
 
 // --- PUBLIC READS ---
 // GET /api/restaurants/nearby
